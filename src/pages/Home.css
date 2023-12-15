@@ -1,0 +1,46 @@
+
+.grid-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    
+}
+
+.left-side-grid{
+    border: 1px solid ;
+    padding: 1rem;
+    margin: 2rem;
+       
+}
+
+.right-side-grid{
+    border: 1px solid ;
+    padding: 1rem;
+    margin: 2rem;
+       
+}
+
+.home-posts{
+    text-align: left;
+    border:  solid ;
+    padding: 0.5rem;
+    margin: 2rem;
+    
+}
+
+.header{
+ background-color: aqua;    
+ padding: 0 rem;
+ margin: 0rem;
+}
+
+.img{
+  width: 4rem;
+}
+.home-content-grid{
+    border: 1px solid;
+}
+
+.home-posts{
+    display: grid;
+    grid-template-columns: 0.1fr 2fr;
+}

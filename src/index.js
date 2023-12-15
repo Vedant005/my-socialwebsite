@@ -3,11 +3,25 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import { makeServer } from './server'
+import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthContext,AuthProvider } from './contexts/AuthContext';
+import { PostProvider } from './contexts/postContext';
+import { BookmarkProvider } from './contexts/BookmarkContext';
+// Call make Server
+makeServer()
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Router>
+      <AuthProvider>
+       <PostProvider>
+         <BookmarkProvider>
+            <App />
+         </BookmarkProvider>
+       </PostProvider>
+      </AuthProvider>
+    </Router>
   </React.StrictMode>
 );
 
