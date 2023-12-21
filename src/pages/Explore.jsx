@@ -18,7 +18,7 @@ export default function Explore(){
             return(
             <div className="home-posts">
                 <div className="img-grid">
-                 <img className="img" src={info.img}/>
+                 <img className="img" src={info.img} alt="post"/>
                  </div>
                  <div className="content-grid">
                 <h3>{info.username}</h3>

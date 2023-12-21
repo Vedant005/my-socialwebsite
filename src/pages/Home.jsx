@@ -4,11 +4,11 @@ import RightSidebar from "../components/RIghtSidebar"
 import "./Home.css"
 import LandingPage from "../components/LandingPage"
 import { usePost } from "../contexts/postContext"
-import { useBook } from "../contexts/BookmarkContext"
+// import { useBook } from "../contexts/BookmarkContext"
 
 export default  function Home(){
-    const {post,addBookmark}=usePost();
-    const {addToBook}= useBook();
+    const {post}=usePost();
+    // const {addToBook}= useBook();
     return(
             <div>
             <div className="header">

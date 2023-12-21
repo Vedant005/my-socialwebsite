@@ -3,7 +3,7 @@ import { useBook } from "../contexts/BookmarkContext"
 import "./Bookmark.css"
 
 export default function Bookmark(){
-  const {mark,addToBook}= useBook();
+  const {mark}= useBook();
   console.log(mark);
   
   return(

@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { makeServer } from './server'
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthContext,AuthProvider } from './contexts/AuthContext';
+import { AuthProvider } from './contexts/AuthContext';
 import { PostProvider } from './contexts/postContext';
 import { BookmarkProvider } from './contexts/BookmarkContext';
 // Call make Server

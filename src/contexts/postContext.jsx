@@ -1,4 +1,4 @@
-import { Children, createContext, useContext, useEffect, useState } from "react";
+import {  createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 
 export const PostContext = createContext();
@@ -6,7 +6,7 @@ export const PostContext = createContext();
  function PostProvider({children}) {
 
     const[post,setPost]=useState([]);
-    const [bookmark,setBookmark]=useState({});
+   //  const [bookmark,setBookmark]=useState({});
     
      const fetchPost =async()=>{
         try{
