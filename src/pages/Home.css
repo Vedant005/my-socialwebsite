@@ -1,31 +1,32 @@
 
-.grid-container{
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
+.flex-container{
+   display: flex;
+   flex-direction: row;
     
 }
 
 .left-side-grid{
-    border: 1px solid ;
+    /* border: 1px solid ; */
     padding: 1rem;
-    margin: 2rem;
+    width: 20rem;
+    margin:2rem;
        
 }
 
 .right-side-grid{
-    border: 1px solid ;
+    /* border: 1px solid ; */
     padding: 1rem;
+    width:20rem;
     margin: 2rem;
-       
 }
 
-.home-posts{
-    text-align: left;
-    border:  solid ;
-    padding: 0.5rem;
-    margin: 2rem;
-    
+.home-content-grid{
+    /* border: 1px solid; */
+    width: 50rem;
+    margin:2rem;
+    border-radius: 10px;
 }
+
 
 .header{
  background-color: aqua;    
@@ -36,11 +37,20 @@
 .img{
   width: 4rem;
 }
-.home-content-grid{
-    border: 1px solid;
+.addPost{
+    padding: 2px;
+    border-radius: 10px;
+    background-color: aquamarine;
+    width: 75%;
+}
+.newPost{
+    background-color:rgb(163, 204, 204);
+    border-radius: 15px;
+    padding: 15px;
+    display: flex;
+   flex-direction: column;
 }
 
-.home-posts{
-    display: grid;
-    grid-template-columns: 0.1fr 2fr;
+.post-btn{
+  
 }

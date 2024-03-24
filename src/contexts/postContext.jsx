@@ -42,7 +42,7 @@ export const PostContext = createContext();
      },[])
 
      return(
-        <PostContext.Provider value ={{post,setPost,addBookmark}}>
+        <PostContext.Provider value ={{post,setPost}}>
             {children}
         </PostContext.Provider>
      )

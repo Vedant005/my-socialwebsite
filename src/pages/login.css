@@ -1,0 +1,14 @@
+.main-container{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:60px
+}
+
+.login-image{
+ width: 40%;
+
+
+ align-items: center;
+}

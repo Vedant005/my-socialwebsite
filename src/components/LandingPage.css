@@ -1,0 +1,37 @@
+.post-container{
+    border:2px solid;
+    /* padding: 1.3rem; */
+    /* margin: 2rem; */
+    /* padding: 2em; */
+    border-radius: 15px;
+    padding-bottom: 2rem;
+    padding: 1rem;
+}
+
+.post-top-container{
+    display: flex;
+    align-items: center;
+    height: 10%;
+}
+.user-profile{
+    margin: 2px;
+}
+
+/* .profile-img{
+  height: 10vh;
+} */
+.username{
+    justify-content: center;
+    align-items: center;
+}
+
+.likes-marks{
+    display: flex;
+    justify-content: space-between;
+}
+
+.likes{
+    display: flex;
+    gap: 1rem;
+    /* justify-content: space-evenly;  */
+}

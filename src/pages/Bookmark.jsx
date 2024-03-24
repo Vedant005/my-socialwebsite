@@ -4,7 +4,7 @@ import "./Bookmark.css"
 
 export default function Bookmark(){
   const {mark}= useBook();
-  console.log(mark);
+  
   
   return(
       
@@ -15,13 +15,14 @@ export default function Bookmark(){
          <div className="left-side-grid">
         <LeftSidebar/>
          </div> 
-         <div>
+         <div className="main-book">
             {mark.map((showPost)=>{
                  
                  return(
                     <div className="main-div">
                             <div className="main-post" key={showPost._id}>
                                 <h1>{showPost.username}</h1>
+                                <img src={showPost.imgUrl}/>
                                  <p>
                                     {showPost.content}
                                  </p>
