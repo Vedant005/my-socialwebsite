@@ -1,98 +1,75 @@
-import React, { useState } from 'react'
-import { useBook } from '../contexts/BookmarkContext';
-import "./LandingPage.css"
-import { FaRegComment } from "react-icons/fa";
+import React, { useState } from "react";
+import { useBook } from "../contexts/BookmarkContext";
+import { FaRegComment, FaRegHeart, FaHeart } from "react-icons/fa";
 import { TbBookmark } from "react-icons/tb";
-import { FaRegHeart } from "react-icons/fa";
 
-function LandingPage({showPost}) {
-  const {addToBook} = useBook();  
-    
-    const {
-        _id,
-        content,
-        username,
-        imgUrl,
-        profile,
-        likes,
-    }=showPost;
-    const likesCount= likes.likeCount;
+function LandingPage({ showPost }) {
+  const { addToBook } = useBook();
 
-    const [isLiked,setIsLiked]=useState(false);
-    
-    const [like,setLike]= useState(likesCount);
+  const { _id, content, username, imgUrl, profile, likes } = showPost;
+  const likesCount = likes.likeCount;
 
-    const handleLikes = ()=>{
- 
-    setLike(like+1);
-    setIsLiked(true);
-    
+  const [isLiked, setIsLiked] = useState(false);
+  const [like, setLike] = useState(likesCount);
 
-    }
-
-    const handleDisLikes = ()=>{
-
-      setLike(like-1);
+  const handleLike = () => {
+    if (isLiked) {
+      setLike(like - 1);
       setIsLiked(false);
+    } else {
+      setLike(like + 1);
+      setIsLiked(true);
     }
-
+  };
 
   return (
-    <div>
-        
-        
-        <div className="post-container" key={_id}>
-           <div className="post-top-container">
-            <div className="user-profile">
-               <img className="profile-img" src={profile} alt='img'/>
-            </div>
-            <div className='username'>
-            <p>{username}</p>
-            </div>
-      
-           </div>
-           <hr/>
-           <div className='content-container'>
-            <div className='post-image'>
-             {imgUrl ? (
-            <img className='post-image' src={imgUrl} alt='img'/>
-             ):(
-              <p></p>
-             )
-            }
-            </div>
-           <div className='post-content'>
-           <p>
-            {content}
-            </p>
-           </div>
-           </div>
-           <hr/>
-
-            <div className='likes-marks'>
-             <div className='likes'>
-              <div>
-             <FaRegHeart onClick={isLiked}/>
-             <p>{like}</p>
-             </div>
-             <div>
-            <FaRegComment className="comment-icon"/>
-            </div>
-           </div>
-
-        <div>
-            <TbBookmark onClick={()=>addToBook(showPost)}/>
-             </div>
-             
+    <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+      <div className="p-4">
+        <div className="flex items-center mb-4">
+          <img
+            className="w-10 h-10 rounded-full mr-3"
+            src={profile}
+            alt={username}
+          />
+          <p className="font-semibold text-gray-800">{username}</p>
         </div>
 
-        </div>
-       <hr/>
- 
+        {imgUrl && (
+          <img
+            className="w-full h-64 object-cover mb-4 rounded"
+            src={imgUrl}
+            alt="Post"
+          />
+        )}
 
+        <p className="text-gray-700 mb-4">{content}</p>
+
+        <div className="flex items-center justify-between text-gray-500">
+          <div className="flex items-center space-x-4">
+            <button
+              onClick={handleLike}
+              className={`flex items-center space-x-1 ${
+                isLiked ? "text-red-500" : "hover:text-red-500"
+              }`}
+            >
+              {isLiked ? <FaHeart /> : <FaRegHeart />}
+              <span>{like}</span>
+            </button>
+            <button className="flex items-center space-x-1 hover:text-blue-500">
+              <FaRegComment />
+              <span>Comment</span>
+            </button>
+          </div>
+          <button
+            onClick={() => addToBook(showPost)}
+            className="hover:text-yellow-500"
+          >
+            <TbBookmark size={20} />
+          </button>
+        </div>
+      </div>
     </div>
-
-  )
+  );
 }
 
-export default LandingPage
+export default LandingPage;
