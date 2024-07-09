@@ -1,20 +1,11 @@
-
-
-export default function RightSidebar(){
-    
-
-    return(
-
-        <div>
-            <img />
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-            <p>Name</p>
-
-        </div>
-    )
-
-
+export default function RightSidebar() {
+  return (
+    <div>
+      <p>Name</p>
+      <p>Name</p>
+      <p>Name</p>
+      <p>Name</p>
+      <p>Name</p>
+    </div>
+  );
 }
