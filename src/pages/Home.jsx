@@ -28,16 +28,16 @@ export default function Home() {
         <FaBars />
       </button>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="flex flex-col lg:flex-row lg:space-x-8">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-8 py-4">
+        <div className="flex flex-col lg:flex-row lg:space-x-4">
           {/* Left Sidebar */}
           <div
             className={`${
               showSidebar ? "block" : "hidden"
-            } lg:block lg:w-1/4 mb-8 lg:mb-0`}
+            } lg:block lg:w-1/5 mb-4 lg:mb-0`}
           >
-            <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-6 sticky top-8">
-              <h2 className="text-xl font-semibold mb-4 text-center text-purple-600">
+            <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 sticky top-4">
+              <h2 className="text-lg font-semibold mb-3 text-center text-purple-600">
                 Menu
               </h2>
               <LeftSidebar />
@@ -45,21 +45,21 @@ export default function Home() {
           </div>
 
           {/* Main Content */}
-          <main className="lg:w-1/2 space-y-8">
-            <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-6">
+          <main className="lg:w-3/5 space-y-4">
+            <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4">
               <textarea
                 id="newPost"
-                className="w-full p-3 border border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
-                rows="4"
+                className="w-full p-2 border border-purple-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+                rows="3"
                 placeholder="What's on your mind?"
                 value={newPost}
                 onChange={(e) => setNewPost(e.target.value)}
               />
-              <div className="flex items-center justify-between mt-4">
+              <div className="flex items-center justify-between mt-2">
                 <button className="text-purple-500 hover:text-purple-600 transition-colors">
                   <FaRegImage className="text-xl" />
                 </button>
-                <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full hover:from-purple-600 hover:to-pink-600 transition-colors">
+                <button className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-4 py-1 rounded-full hover:from-purple-600 hover:to-pink-600 transition-colors text-sm">
                   Post
                 </button>
               </div>
@@ -73,10 +73,10 @@ export default function Home() {
           <div
             className={`${
               showSidebar ? "block" : "hidden"
-            } lg:block lg:w-1/4 mt-8 lg:mt-0`}
+            } lg:block lg:w-1/5 mt-4 lg:mt-0`}
           >
-            <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-6 sticky top-8">
-              <h2 className="text-xl font-semibold mb-4 text-center text-pink-600">
+            <div className="bg-white bg-opacity-80 backdrop-filter backdrop-blur-lg rounded-lg shadow-lg p-4 sticky top-4">
+              <h2 className="text-lg font-semibold mb-3 text-center text-pink-600">
                 Trending
               </h2>
               <RightSidebar />
