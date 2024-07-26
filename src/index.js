@@ -1,25 +1,27 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { makeServer } from './server'
-import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthProvider } from './contexts/AuthContext';
-import { PostProvider } from './contexts/postContext';
-import { BookmarkProvider } from './contexts/BookmarkContext';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import { makeServer } from "./server";
+import { BrowserRouter as Router } from "react-router-dom";
+import { AuthProvider } from "./contexts/AuthContext";
+import { PostProvider } from "./contexts/postContext";
+import { BookmarkProvider } from "./contexts/BookmarkContext";
+import { store } from "./store/store";
+
 // Call make Server
-makeServer()
-const root = ReactDOM.createRoot(document.getElementById('root'));
+makeServer();
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Router>
       <AuthProvider>
-       <PostProvider>
-         <BookmarkProvider>
+        <PostProvider>
+          <BookmarkProvider>
             <App />
-         </BookmarkProvider>
-       </PostProvider>
+          </BookmarkProvider>
+        </PostProvider>
       </AuthProvider>
     </Router>
   </React.StrictMode>
