@@ -1,14 +1,16 @@
+import React, { useState } from "react";
 import Header from "../components/Header";
 import LeftSidebar from "../components/LeftSidebar";
 import RightSidebar from "../components/RIghtSidebar";
 import LandingPage from "../components/LandingPage";
 import { usePost } from "../contexts/postContext";
-import { FaRegImage, FaBars } from "react-icons/fa";
-import { useState } from "react";
+import { useBook } from "../contexts/BookmarkContext";
+import { FaRegImage, FaBars, FaRegComment, FaRegHeart } from "react-icons/fa";
+import { TbBookmark } from "react-icons/tb";
 
 export default function Home() {
   const { post } = usePost();
-  const [info, setInfo] = useState(post);
+  const { addToBook } = useBook();
   const [newPost, setNewPost] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
 
@@ -64,8 +66,53 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            {info.map((post, index) => (
-              <LandingPage key={index} showPost={post} />
+            {post.map((info) => (
+              <div
+                key={info._id}
+                className="bg-white rounded-lg shadow-lg overflow-hidden"
+              >
+                <div className="p-4">
+                  <div className="flex items-center mb-4">
+                    <img
+                      className="w-10 h-10 rounded-full mr-3"
+                      src={info.profile}
+                      alt={info.username}
+                    />
+                    <p className="font-semibold text-gray-800">
+                      {info.username}
+                    </p>
+                  </div>
+
+                  {info.imgUrl && (
+                    <img
+                      className="w-full h-64 object-cover mb-4 rounded"
+                      src={info.imgUrl}
+                      alt="Post"
+                    />
+                  )}
+
+                  <p className="text-gray-700 mb-4">{info.content}</p>
+
+                  <div className="flex items-center justify-between text-gray-500">
+                    <div className="flex items-center space-x-4">
+                      <button className="flex items-center space-x-1 hover:text-red-500">
+                        <FaRegHeart />
+                        <span>Like</span>
+                      </button>
+                      <button className="flex items-center space-x-1 hover:text-blue-500">
+                        <FaRegComment />
+                        <span>Comment</span>
+                      </button>
+                    </div>
+                    <button
+                      onClick={() => addToBook(info)}
+                      className="hover:text-yellow-500"
+                    >
+                      <TbBookmark size={20} />
+                    </button>
+                  </div>
+                </div>
+              </div>
             ))}
           </main>
 

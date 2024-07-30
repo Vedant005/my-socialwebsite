@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { usePost } from "../contexts/postContext";
 import LeftSidebar from "../components/LeftSidebar";
 import { useBook } from "../contexts/BookmarkContext";
 import { FaRegComment, FaRegHeart, FaBars } from "react-icons/fa";
 import { TbBookmark } from "react-icons/tb";
-import { useState } from "react";
 
 export default function Explore() {
   const { post } = usePost();
@@ -46,55 +45,54 @@ export default function Explore() {
 
           {/* Main Content */}
           <main className="lg:w-3/4 space-y-8">
-            {post.map((info) => {
-              const { _id, profile, username, imgUrl, content } = info;
-              return (
-                <div
-                  key={_id}
-                  className="bg-white rounded-lg shadow-lg overflow-hidden"
-                >
-                  <div className="p-4">
-                    <div className="flex items-center mb-4">
-                      <img
-                        className="w-10 h-10 rounded-full mr-3"
-                        src={profile}
-                        alt={username}
-                      />
-                      <p className="font-semibold text-gray-800">{username}</p>
-                    </div>
+            {post.map((info) => (
+              <div
+                key={info._id}
+                className="bg-white rounded-lg shadow-lg overflow-hidden"
+              >
+                <div className="p-4">
+                  <div className="flex items-center mb-4">
+                    <img
+                      className="w-10 h-10 rounded-full mr-3"
+                      src={info.profile}
+                      alt={info.username}
+                    />
+                    <p className="font-semibold text-gray-800">
+                      {info.username}
+                    </p>
+                  </div>
 
-                    {imgUrl && (
-                      <img
-                        className="w-full h-64 object-cover mb-4 rounded"
-                        src={imgUrl}
-                        alt="Post"
-                      />
-                    )}
+                  {info.imgUrl && (
+                    <img
+                      className="w-full h-64 object-cover mb-4 rounded"
+                      src={info.imgUrl}
+                      alt="Post"
+                    />
+                  )}
 
-                    <p className="text-gray-700 mb-4">{content}</p>
+                  <p className="text-gray-700 mb-4">{info.content}</p>
 
-                    <div className="flex items-center justify-between text-gray-500">
-                      <div className="flex items-center space-x-4">
-                        <button className="flex items-center space-x-1 hover:text-red-500">
-                          <FaRegHeart />
-                          <span>Like</span>
-                        </button>
-                        <button className="flex items-center space-x-1 hover:text-blue-500">
-                          <FaRegComment />
-                          <span>Comment</span>
-                        </button>
-                      </div>
-                      <button
-                        onClick={() => addToBook(info)}
-                        className="hover:text-yellow-500"
-                      >
-                        <TbBookmark size={20} />
+                  <div className="flex items-center justify-between text-gray-500">
+                    <div className="flex items-center space-x-4">
+                      <button className="flex items-center space-x-1 hover:text-red-500">
+                        <FaRegHeart />
+                        <span>Like</span>
+                      </button>
+                      <button className="flex items-center space-x-1 hover:text-blue-500">
+                        <FaRegComment />
+                        <span>Comment</span>
                       </button>
                     </div>
+                    <button
+                      onClick={() => addToBook(info)}
+                      className="hover:text-yellow-500"
+                    >
+                      <TbBookmark size={20} />
+                    </button>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </main>
         </div>
       </div>
