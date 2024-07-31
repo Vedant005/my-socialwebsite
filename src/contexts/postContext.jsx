@@ -1,53 +1,40 @@
-import {  createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
+import { posts as initialPosts } from "../backend/db/posts";
 
 export const PostContext = createContext();
 
- function PostProvider({children}) {
+export function PostProvider({ children }) {
+  const [posts, setPosts] = useState(initialPosts);
 
-    const[post,setPost]=useState([]);
-   //  const [bookmark,setBookmark]=useState({});
-    
-     const fetchPost =async()=>{
-        try{
-        const res = await axios.get("/api/posts")
-        const data =await res.data;
-         setPost(data.posts);
-        }
-        catch(e){
-            console.log(e)
-        }
+  const likePost = (postId) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post._id === postId
+          ? {
+              ...post,
+              likes: { ...post.likes, likeCount: post.likes.likeCount + 1 },
+            }
+          : post
+      )
+    );
+  };
 
-     }
-   //   const inBookmark = async()=>{
-   //    try{
-   //          const response = await axios.get(`api/users/bookmarks`)
-   //    }catch(e){
-   //       console.log(e);
-   //    }
-   //   }
-      const addBookmark= async(postId)=>{
-          try{
-             const res = await axios.get(`api/users/bookmarks/${postId}`)
-              return res;
-          }catch(e){
-            console.log(e);
-          }
-      }
+  const addComment = (postId, comment) => {
+    setPosts((prevPosts) =>
+      prevPosts.map((post) =>
+        post._id === postId
+          ? { ...post, comments: [...(post.comments || []), comment] }
+          : post
+      )
+    );
+  };
 
+  return (
+    <PostContext.Provider value={{ posts, setPosts, likePost, addComment }}>
+      {children}
+    </PostContext.Provider>
+  );
+}
 
-     useEffect(()=>{
-        fetchPost();
-      //   inBookmark();
-     },[])
-
-     return(
-        <PostContext.Provider value ={{post,setPost}}>
-            {children}
-        </PostContext.Provider>
-     )
-
-     }
-     const usePost=()=>useContext(PostContext);
-     export{PostProvider,usePost}
- 
+export const usePost = () => useContext(PostContext);
