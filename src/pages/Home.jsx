@@ -9,10 +9,11 @@ import { FaRegImage, FaBars, FaRegComment, FaRegHeart } from "react-icons/fa";
 import { TbBookmark } from "react-icons/tb";
 
 export default function Home() {
-  const { post } = usePost();
+  const { posts, likePost, addComment } = usePost();
   const { addToBook } = useBook();
   const [newPost, setNewPost] = useState("");
   const [showSidebar, setShowSidebar] = useState(false);
+  const [commentText, setCommentText] = useState("");
 
   const toggleSidebar = () => {
     setShowSidebar(!showSidebar);
@@ -66,7 +67,7 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            {post.map((info) => (
+            {posts.map((info) => (
               <div
                 key={info._id}
                 className="bg-white rounded-lg shadow-lg overflow-hidden"
@@ -93,15 +94,20 @@ export default function Home() {
 
                   <p className="text-gray-700 mb-4">{info.content}</p>
 
-                  <div className="flex items-center justify-between text-gray-500">
+                  <div className="flex items-center justify-between text-gray-500 p-4">
                     <div className="flex items-center space-x-4">
-                      <button className="flex items-center space-x-1 hover:text-red-500">
+                      <button
+                        className="flex items-center space-x-1 hover:text-red-500"
+                        onClick={() => likePost(info._id)}
+                      >
                         <FaRegHeart />
-                        <span>Like</span>
+                        <span>Like ({info.likes.likeCount})</span>
                       </button>
                       <button className="flex items-center space-x-1 hover:text-blue-500">
                         <FaRegComment />
-                        <span>Comment</span>
+                        <span>
+                          Comment ({info.comments ? info.comments.length : 0})
+                        </span>
                       </button>
                     </div>
                     <button
@@ -110,6 +116,33 @@ export default function Home() {
                     >
                       <TbBookmark size={20} />
                     </button>
+                  </div>
+                  {/* Comments section */}
+                  <div className="p-4 border-t">
+                    {info.comments &&
+                      info.comments.map((comment, index) => (
+                        <div key={index} className="mb-2 text-sm text-gray-700">
+                          {comment}
+                        </div>
+                      ))}
+                    <div className="mt-2 flex">
+                      <input
+                        type="text"
+                        placeholder="Add a comment..."
+                        className="flex-grow p-2 border rounded-l-lg"
+                        value={commentText}
+                        onChange={(e) => setCommentText(e.target.value)}
+                      />
+                      <button
+                        className="bg-blue-500 text-white px-4 py-2 rounded-r-lg"
+                        onClick={() => {
+                          addComment(info._id, commentText);
+                          setCommentText("");
+                        }}
+                      >
+                        Post
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
